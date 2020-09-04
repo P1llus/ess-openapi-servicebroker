@@ -1,3 +1,6 @@
+/*
+Package cmd is the starting point of the application when starting up
+*/
 package cmd
 
 import (
@@ -11,18 +14,18 @@ import (
 	"github.com/P1llus/ess-openapi-servicebroker/provider"
 )
 
+// Run will be executed by main.go in the root directory and takes care of initializing
+// the application and starting the HTTP listener.
 func Run() error {
-	// Load Provider
 	logger := logger.GetLogger()
 	runtimeConfig := config.LoadConfig(logger)
-	plans, services := config.LoadCatalogue(logger)
+	plans, services := config.LoadCatalog(logger)
+
 	provider := provider.NewProvider(runtimeConfig.Provider, plans, logger)
 
-	// Load Broker
 	runtimeBroker := broker.NewBroker(runtimeConfig.Broker, provider, services, logger)
 	server := runtimeBroker.NewBrokerHTTPServer(runtimeBroker)
 
-	// Create listener from config and serve the Broker API
 	logger.Info(fmt.Sprintf("Starting new ServiceBroker listener on port %s", runtimeConfig.Broker.Port))
 	listener, err := net.Listen(runtimeConfig.Broker.Protocol, fmt.Sprintf(":%s", runtimeConfig.Broker.Port))
 	http.Serve(listener, server)

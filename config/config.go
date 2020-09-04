@@ -1,3 +1,6 @@
+/*
+Package config is used to define all configuration items used throughout the application
+*/
 package config
 
 import (
@@ -11,11 +14,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Config struct is a collection of all configuration items supported
 type Config struct {
 	Provider `yaml:"provider"`
 	Broker   `yaml:"broker"`
 }
 
+// Provider struct includes all settings supported for the Provider
 type Provider struct {
 	Version   string `yaml:"version"`
 	URL       string `yaml:"url"`
@@ -24,6 +29,7 @@ type Provider struct {
 	Seed      string `yaml:"seed"`
 }
 
+// Broker struct includes all settings supported for the Broker
 type Broker struct {
 	Port     string `yaml:"port"`
 	Protocol string `yaml:"protocol"`
@@ -31,6 +37,7 @@ type Broker struct {
 	Password string `yaml:"password"`
 }
 
+// LoadConfig tries to read the defined config file and return a Config struct upon success
 func LoadConfig(logger lager.Logger) *Config {
 	v := viper.New()
 	v.SetConfigName("config")
@@ -56,7 +63,11 @@ func LoadConfig(logger lager.Logger) *Config {
 	return &C
 }
 
-func LoadCatalogue(logger lager.Logger) ([]models.DeploymentCreateRequest, []domain.Service) {
+// LoadCatalog returns a collection of DeploymentRequests for the Provider
+// When Provisioning new cluster. It will also return a collection of all
+// the available Service Catalog that will be presented to any consumer
+// utilizing the API
+func LoadCatalog(logger lager.Logger) ([]models.DeploymentCreateRequest, []domain.Service) {
 	planfile, err := ioutil.ReadFile("./config/plans.json")
 	if err != nil {
 		logger.Fatal("Error loading plans:", err, lager.Data{
@@ -96,24 +107,27 @@ func LoadCatalogue(logger lager.Logger) ([]models.DeploymentCreateRequest, []dom
 	return plans, services
 }
 
-func FindProvisionDetails(services []domain.Service, serviceId string, planId string) (domain.ServicePlan, error) {
+// FindProvisionDetails will iterate over the Service Catalog and return the correct plan
+// related to the planId parameter
+func FindProvisionDetails(services []domain.Service, serviceID string, planID string) (domain.ServicePlan, error) {
 	for _, service := range services {
-		if service.ID == serviceId {
+		if service.ID == serviceID {
 			for _, plan := range service.Plans {
-				if plan.ID == planId {
+				if plan.ID == planID {
 					return plan, nil
 				}
 			}
 		}
 	}
-	return domain.ServicePlan{}, fmt.Errorf("Could not find service with ID:%s and plan with ID: %s", serviceId, planId)
+	return domain.ServicePlan{}, fmt.Errorf("could not find service with ID:%s and plan with ID: %s", serviceID, planID)
 }
 
+// FindDeploymentTemplateFromPlan will return the correct DeploymentRequest matching the plan parameter
 func FindDeploymentTemplateFromPlan(deployments []models.DeploymentCreateRequest, plan domain.ServicePlan) (models.DeploymentCreateRequest, error) {
 	for _, deployment := range deployments {
 		if deployment.Name == plan.Name {
 			return deployment, nil
 		}
 	}
-	return models.DeploymentCreateRequest{}, fmt.Errorf("Could not find a Elasticsearch deployment template that matches Plan ID: %s", plan.ID)
+	return models.DeploymentCreateRequest{}, fmt.Errorf("could not find a Elasticsearch deployment template that matches Plan ID: %s", plan.ID)
 }

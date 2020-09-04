@@ -1,0 +1,64 @@
+sudo: required
+dist: focal
+language: go
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - GOX_FLAGS="-arch amd64"
+    - TRAVIS_GO_VERSION=$(cat .go-version)
+
+go_import_path: github.com/P1llus/ess-openapi-servicebroker
+
+notifications:
+  email: false
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: linting
+      name: "Linting"
+      os: linux
+      go: $TRAVIS_GO_VERSION
+      script:
+        - GO_FILES=$(find . -iname '*.go' -type f | grep -v /vendor/)
+        - PKGS=$(go list ./... | grep -v /vendor/)
+        - go get golang.org/x/lint/golint
+        - go get honnef.co/go/tools/cmd/staticcheck
+        - go get github.com/fzipp/gocyclo
+        - test -z $(gofmt -s -l $GO_FILES)
+        - go test -race -coverprofile=coverage.txt -covermode=atomic $PKGS
+        - go vet ./...
+        - staticcheck $PKGS
+        - gocyclo -over 19 $GO_FILES
+        - golint -set_exit_status $(go list ./...)
+    - stage: localbuild
+      name: "Building Project"
+      os: linux
+      go: $TRAVIS_GO_VERSION
+      script:
+        - go build -o servicebroker -v
+    - stage: dockerfile
+      name: "Checking Docker Build"
+      os: linux
+      go: $TRAVIS_GO_VERSION
+      script:
+        - docker build -t ess-openapi-servicebroker .
+        - docker run -d -p 8000:8000 ess-openapi-servicebroker
+        - docker ps -a
+    - stage: dockercompose
+      name: "Checking Docker Compose Build"
+      os: linux
+      go: $TRAVIS_GO_VERSION
+      script:
+        - go build -o servicebroker -v
+        - docker-compose up
+
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
