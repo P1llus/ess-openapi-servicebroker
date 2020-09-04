@@ -1,0 +1,27 @@
+language: go
+
+go:
+  - 1.14.x
+  - 1.15.x
+
+branches:
+  only:
+  - master
+
+services:
+  - docker
+
+before_install:
+  - go build
+  - docker build -t ess-openapi-servicebroker .
+  - docker run -d -p 8000:8000 ess-openapi-servicebroker
+  - docker ps -a
+
+script:
+  - go get -t -v ./...
+  - diff -u <(echo -n) <(gofmt -d -s .)
+  - go vet .
+  - go test -v -race -coverprofile=coverage.txt -covermode=atomic
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

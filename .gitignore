@@ -1,7 +1,5 @@
 ### Project Specific ###
 config/config.yml
-config/broker.yml
-config/provider.yml
 
 ### Go ###
 # Binaries for programs and plugins
@@ -11,6 +9,10 @@ config/provider.yml
 *.so
 *.dylib
 
+# Coverage
+*.generated.yml
+coverage.out
+
 # Test binary, built with `go test -c`
 *.test
 
@@ -18,11 +20,19 @@ config/provider.yml
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
+
+# Vagrant
+/.vagrant
 
 ### Go Patch ###
 /vendor/
 /Godeps/
+
+# Swap files
+*.swp
+*.swo
+*.swn
 
 ### VisualStudioCode ###
 .vscode/*
@@ -36,4 +46,3 @@ config/provider.yml
 # Ignore all local history of files
 .history
 
-# End of https://www.toptal.com/developers/gitignore/api/go,visualstudiocode

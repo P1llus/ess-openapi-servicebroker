@@ -1,0 +1,5 @@
+version: "1"
+services:
+  go:
+    build: ./
+    command: ./ess-openapi-servicebroker
