@@ -71,7 +71,7 @@ func NewProvider(providerConfig config.Provider, plans []models.DeploymentCreate
 	return provider
 }
 
-// Provision compares the choosen PlanID to the local services files to find a match.
+// Provision compares the chosen PlanID to the local services files to find a match.
 // When a match is found it will trigger the creation of a new cluster, using the InstanceID as the name
 func (p *Provider) Provision(ctx context.Context, provision *ProvisionData) (string, string, error) {
 	deploymentTemplate, err := config.FindDeploymentTemplateFromPlan(p.Plans, provision.Plan)
