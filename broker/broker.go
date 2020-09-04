@@ -1,3 +1,8 @@
+/*
+Package broker is a collection of all the API endpoints required to work
+as a Service Catalogue following the OSBAPI Specifications defined
+https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md
+*/
 package broker
 
 import (
@@ -12,6 +17,7 @@ import (
 	"github.com/pivotal-cf/brokerapi/v7/domain"
 )
 
+// Broker struct defines the structure of the Broker object
 type Broker struct {
 	brokerConfig   config.Broker
 	Provider       provider.ServiceProvider
@@ -19,6 +25,7 @@ type Broker struct {
 	brokerServices []domain.Service
 }
 
+// NewBroker returns a new ServiceBroker based on the OpenAPI ServiceBroker specs
 func NewBroker(brokerConfig config.Broker, serviceProvider provider.ServiceProvider, services []domain.Service, logger lager.Logger) *Broker {
 	broker := &Broker{
 		brokerConfig:   brokerConfig,
@@ -29,6 +36,7 @@ func NewBroker(brokerConfig config.Broker, serviceProvider provider.ServiceProvi
 	return broker
 }
 
+// NewBrokerHTTPServer starts the HTTP server used for the incoming API calls made by the consumer
 func (b *Broker) NewBrokerHTTPServer(broker domain.ServiceBroker) http.Handler {
 	credentials := brokerapi.BrokerCredentials{
 		Username: b.brokerConfig.Username,
@@ -44,24 +52,31 @@ func (b *Broker) NewBrokerHTTPServer(broker domain.ServiceBroker) http.Handler {
 	return mux
 }
 
+// GetBinding returns the user related to the BindID on the cluster related to the InstanceID in the request
 func (b *Broker) GetBinding(ctx context.Context, first, second string) (domain.GetBindingSpec, error) {
 	return domain.GetBindingSpec{}, nil
 }
 
+// GetInstance returns the cluster related to the InstanceID in the request
 func (b *Broker) GetInstance(ctx context.Context, first string) (domain.GetInstanceDetailsSpec, error) {
 	return domain.GetInstanceDetailsSpec{}, nil
 }
 
+// LastBindingOperation returns the last user created through a bind operation
+// Endpoint is GET /v2/service_instances/:instance_id/service_bindings/:binding_id/last_operation
 func (b *Broker) LastBindingOperation(ctx context.Context, first, second string, pollDetails domain.PollDetails) (domain.LastOperation, error) {
 	return domain.LastOperation{}, nil
 }
 
+// Services returns the current Service catalogue that the consumer can deploy through a ServiceBroker
+// Endpoint is GET /v2/catalog
 func (b *Broker) Services(ctx context.Context) ([]domain.Service, error) {
 	return b.brokerServices, nil
 }
 
+// Provision returns the status of a initialized deployment operation to the consumer
+// Endpoint is PUT /v2/service_instances/:instance_id
 func (b *Broker) Provision(ctx context.Context, instanceID string, details domain.ProvisionDetails, isAsyncAllowed bool) (domain.ProvisionedServiceSpec, error) {
-
 	if !isAsyncAllowed {
 		return domain.ProvisionedServiceSpec{}, brokerapi.ErrAsyncRequired
 	}
@@ -84,6 +99,8 @@ func (b *Broker) Provision(ctx context.Context, instanceID string, details domai
 	return domain.ProvisionedServiceSpec{DashboardURL: dashboardURL, OperationData: operationData, IsAsync: true, AlreadyExists: false}, nil
 }
 
+// Deprovision returns the status of a initialized shutdown operation to the consumer
+// Endpoint is DELETE /v2/service_instances/:instance_id
 func (b *Broker) Deprovision(ctx context.Context, instanceID string, details domain.DeprovisionDetails, isAsyncAllowed bool) (domain.DeprovisionServiceSpec, error) {
 	if !isAsyncAllowed {
 		return domain.DeprovisionServiceSpec{}, brokerapi.ErrAsyncRequired
@@ -100,6 +117,8 @@ func (b *Broker) Deprovision(ctx context.Context, instanceID string, details dom
 	return domain.DeprovisionServiceSpec{IsAsync: true, OperationData: operationData}, nil
 }
 
+// Bind returns the status of a initialized user creation operation to the consumer
+// Endpoint is PUT /v2/service_instances/:instance_id/service_bindings/:binding_id
 func (b *Broker) Bind(ctx context.Context, instanceID string, bindID string, bindDetails domain.BindDetails, isAsyncAllowed bool) (domain.Binding, error) {
 	bindData := &provider.BindData{
 		InstanceID: instanceID,
@@ -113,6 +132,8 @@ func (b *Broker) Bind(ctx context.Context, instanceID string, bindID string, bin
 	return domain.Binding{Credentials: credentials, OperationData: operationData}, nil
 }
 
+// Unbind returns the status of a initialized user deletion operation to the consumer
+// Endpoint is DELETE /v2/service_instances/:instance_id/service_bindings/:binding_id
 func (b *Broker) Unbind(ctx context.Context, instanceID string, bindID string, unbindDetails domain.UnbindDetails, isAsyncAllowed bool) (domain.UnbindSpec, error) {
 	unBindData := &provider.UnbindData{
 		InstanceID: instanceID,
@@ -126,13 +147,17 @@ func (b *Broker) Unbind(ctx context.Context, instanceID string, bindID string, u
 	return domain.UnbindSpec{OperationData: operationData}, nil
 }
 
+// Update returns the status of a initialized cluster size update operation to the consumer
+// Endpoint is PATCH /v2/service_instances/:instance_id
 func (b *Broker) Update(context.Context, string, domain.UpdateDetails, bool) (domain.UpdateServiceSpec, error) {
 	return domain.UpdateServiceSpec{}, nil
 }
 
-func (b *Broker) LastOperation(ctx context.Context, instanceId string, pollDetails domain.PollDetails) (domain.LastOperation, error) {
+// LastOperation returns the status of the ongoing async operation defined in the request to the consumer
+// Endpoint is GET /v2/service_instances/:instance_id/last_operation
+func (b *Broker) LastOperation(ctx context.Context, instanceID string, pollDetails domain.PollDetails) (domain.LastOperation, error) {
 	lastOperationData := &provider.LastOperationData{
-		InstanceID:    instanceId,
+		InstanceID:    instanceID,
 		OperationData: pollDetails.OperationData,
 	}
 	state, description, err := b.Provider.LastOperation(ctx, lastOperationData)
