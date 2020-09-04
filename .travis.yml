@@ -14,14 +14,22 @@ services:
 before_install:
   - go build
   - docker build -t ess-openapi-servicebroker .
-  - docker run -d -p 8000:8000 ess-openapi-servicebroker
-  - docker ps -a
 
-script:
-  - go get -t -v ./...
-  - diff -u <(echo -n) <(gofmt -d -s .)
-  - go vet .
-  - go test -v -race -coverprofile=coverage.txt -covermode=atomic
+jobs:
+  include:
+    stage: linting
+    script:
+      - go get -t -v ./...
+      - diff -u <(echo -n) <(gofmt -d -s .)
+      - go vet .
+      - go test -v -race -coverprofile=coverage.txt -covermode=atomic
+    stage: dockerfile
+    script:
+      - docker run -d -p 8000:8000 ess-openapi-servicebroker
+      - docker ps -a
+    stage: dockercompose
+    script:
+      - docker-compose up
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

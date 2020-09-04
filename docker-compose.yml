@@ -1,5 +1,8 @@
-version: "1"
+version: "3.3"
 services:
-  go:
-    build: ./
-    command: ./ess-openapi-servicebroker
+  ess-openapi-servicebroker:
+    image: golang:1.14.8-alpine
+    volumes:
+      - .:/go/src/github.com/P1llus/ess-openapi-servicebroker
+    working_dir: /go/src/github.com/P1llus/ess-openapi-servicebroker
+    command: go run main.go
