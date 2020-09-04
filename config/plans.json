@@ -1,0 +1,315 @@
+[{
+  "name": "my-first-api-deployment",
+  "metadata": {
+    "system_owned": false
+  },
+  "resources": {
+    "elasticsearch": [
+      {
+        "region": "gcp-europe-west1",
+        "ref_id": "main-elasticsearch",
+        "plan": {
+          "cluster_topology": [
+            {
+              "node_type": {
+                "data": true,
+                "master": true,
+                "ingest": true
+              },
+              "instance_configuration_id": "gcp.data.highio.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 1024
+              },
+              "elasticsearch": {
+                "enabled_built_in_plugins": []
+              }
+            },
+            {
+              "node_type": {
+                "data": false,
+                "master": false,
+                "ingest": false,
+                "ml": true
+              },
+              "instance_configuration_id": "gcp.ml.1",
+              "zone_count": 1,
+              "size": {
+                "value": 1024,
+                "resource": "memory"
+              },
+              "elasticsearch": {
+                "enabled_built_in_plugins": []
+              }
+            }
+          ],
+          "elasticsearch": {
+            "version": "7.9.0"
+          },
+          "deployment_template": {
+            "id": "gcp-io-optimized"
+          }
+        },
+        "settings": {
+          "dedicated_masters_threshold": 6
+        }
+      }
+    ],
+    "kibana": [
+      {
+        "region": "gcp-europe-west1",
+        "elasticsearch_cluster_ref_id": "main-elasticsearch",
+        "ref_id": "main-kibana",
+        "plan": {
+          "cluster_topology": [
+            {
+              "instance_configuration_id": "gcp.kibana.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 1024
+              }
+            }
+          ],
+          "kibana": {
+            "version": "7.9.0"
+          }
+        }
+      }
+    ],
+    "apm": [
+      {
+        "region": "gcp-europe-west1",
+        "elasticsearch_cluster_ref_id": "main-elasticsearch",
+        "ref_id": "main-apm",
+        "plan": {
+          "cluster_topology": [
+            {
+              "instance_configuration_id": "gcp.apm.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 512
+              }
+            }
+          ],
+          "apm": {
+            "version": "7.9.0"
+          }
+        }
+      }
+    ],
+    "enterprise_search": []
+  }
+},
+{
+  "name": "my-second-api-deployment",
+  "metadata": {
+    "system_owned": false
+  },
+  "resources": {
+    "elasticsearch": [
+      {
+        "region": "gcp-europe-west1",
+        "ref_id": "main-elasticsearch",
+        "plan": {
+          "cluster_topology": [
+            {
+              "node_type": {
+                "data": true,
+                "master": true,
+                "ingest": true
+              },
+              "instance_configuration_id": "gcp.data.highio.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 1024
+              },
+              "elasticsearch": {
+                "enabled_built_in_plugins": []
+              }
+            },
+            {
+              "node_type": {
+                "data": false,
+                "master": false,
+                "ingest": false,
+                "ml": true
+              },
+              "instance_configuration_id": "gcp.ml.1",
+              "zone_count": 1,
+              "size": {
+                "value": 1024,
+                "resource": "memory"
+              },
+              "elasticsearch": {
+                "enabled_built_in_plugins": []
+              }
+            }
+          ],
+          "elasticsearch": {
+            "version": "7.9.0"
+          },
+          "deployment_template": {
+            "id": "gcp-io-optimized"
+          }
+        },
+        "settings": {
+          "dedicated_masters_threshold": 6
+        }
+      }
+    ],
+    "kibana": [
+      {
+        "region": "gcp-europe-west1",
+        "elasticsearch_cluster_ref_id": "main-elasticsearch",
+        "ref_id": "main-kibana",
+        "plan": {
+          "cluster_topology": [
+            {
+              "instance_configuration_id": "gcp.kibana.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 1024
+              }
+            }
+          ],
+          "kibana": {
+            "version": "7.9.0"
+          }
+        }
+      }
+    ],
+    "apm": [
+      {
+        "region": "gcp-europe-west1",
+        "elasticsearch_cluster_ref_id": "main-elasticsearch",
+        "ref_id": "main-apm",
+        "plan": {
+          "cluster_topology": [
+            {
+              "instance_configuration_id": "gcp.apm.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 512
+              }
+            }
+          ],
+          "apm": {
+            "version": "7.9.0"
+          }
+        }
+      }
+    ],
+    "enterprise_search": []
+  }
+},
+{
+  "name": "my-third-api-deployment",
+  "metadata": {
+    "system_owned": false
+  },
+  "resources": {
+    "elasticsearch": [
+      {
+        "region": "gcp-europe-west1",
+        "ref_id": "main-elasticsearch",
+        "plan": {
+          "cluster_topology": [
+            {
+              "node_type": {
+                "data": true,
+                "master": true,
+                "ingest": true
+              },
+              "instance_configuration_id": "gcp.data.highio.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 1024
+              },
+              "elasticsearch": {
+                "enabled_built_in_plugins": []
+              }
+            },
+            {
+              "node_type": {
+                "data": false,
+                "master": false,
+                "ingest": false,
+                "ml": true
+              },
+              "instance_configuration_id": "gcp.ml.1",
+              "zone_count": 1,
+              "size": {
+                "value": 1024,
+                "resource": "memory"
+              },
+              "elasticsearch": {
+                "enabled_built_in_plugins": []
+              }
+            }
+          ],
+          "elasticsearch": {
+            "version": "7.9.0"
+          },
+          "deployment_template": {
+            "id": "gcp-io-optimized"
+          }
+        },
+        "settings": {
+          "dedicated_masters_threshold": 6
+        }
+      }
+    ],
+    "kibana": [
+      {
+        "region": "gcp-europe-west1",
+        "elasticsearch_cluster_ref_id": "main-elasticsearch",
+        "ref_id": "main-kibana",
+        "plan": {
+          "cluster_topology": [
+            {
+              "instance_configuration_id": "gcp.kibana.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 1024
+              }
+            }
+          ],
+          "kibana": {
+            "version": "7.9.0"
+          }
+        }
+      }
+    ],
+    "apm": [
+      {
+        "region": "gcp-europe-west1",
+        "elasticsearch_cluster_ref_id": "main-elasticsearch",
+        "ref_id": "main-apm",
+        "plan": {
+          "cluster_topology": [
+            {
+              "instance_configuration_id": "gcp.apm.1",
+              "zone_count": 1,
+              "size": {
+                "resource": "memory",
+                "value": 512
+              }
+            }
+          ],
+          "apm": {
+            "version": "7.9.0"
+          }
+        }
+      }
+    ],
+    "enterprise_search": []
+  }
+}]

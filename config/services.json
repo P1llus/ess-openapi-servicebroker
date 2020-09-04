@@ -1,0 +1,49 @@
+[{
+    "id": "uuid-1",
+    "name": "elasticsearch1",
+    "description": "Elasticsearch Observability",
+    "bindable": true,
+    "plan_updateable": true,
+    "requires": [],
+    "metadata": {},
+    "plans": [{
+        "id": "uuid-2",
+        "name": "my-first-api-deployment",
+        "elasticsearch_version": "7.8",
+        "description": "1 CPU, 1 GB RAM, 16 GB SSD",
+        "metadata": {}
+    }]
+},
+{
+    "id": "uuid-3",
+    "name": "elasticsearch2",
+    "description": "Elasticsearch SIEM",
+    "bindable": true,
+    "plan_updateable": true,
+    "requires": [],
+    "metadata": {},
+    "plans": [{
+        "id": "uuid-4",
+        "name": "my-second-api-deployment",
+        "elasticsearch_version": "7.8",
+        "description": "1 CPU, 1 GB RAM, 16 GB SSD",
+        "metadata": {}
+    }]
+},
+{
+    "id": "uuid-5",
+    "name": "elasticsearch3",
+    "description": "Elasticsearch APM",
+    "bindable": true,
+    "plan_updateable": true,
+    "requires": [],
+    "metadata": {},
+    "plans": [{
+        "id": "uuid-6",
+        "name": "my-third-api-deployment",
+        "elasticsearch_version": "7.8",
+        "description": "1 CPU, 1 GB RAM, 16 GB SSD",
+        "metadata": {}
+    }]
+}
+]

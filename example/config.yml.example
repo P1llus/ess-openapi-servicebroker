@@ -1,0 +1,11 @@
+provider:
+  url: "https://api.elastic-cloud.com"
+  version: "v1"
+  apikey: "APIKEY"
+  useragent: "cloud-sdk-go"
+  seed: "asdasdasd"
+broker:
+  port: "8000"
+  protocol: tcp
+  username: USERNAME
+  password: PASSWORD
