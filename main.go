@@ -5,15 +5,13 @@ Run function from the cmd package
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/P1llus/ess-openapi-servicebroker/cmd"
 )
 
 func main() {
-	if err := cmd.Run(); err != nil {
-		fmt.Println(err)
+	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
 	}
 

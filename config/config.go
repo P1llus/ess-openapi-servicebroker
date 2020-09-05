@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 
 	"code.cloudfoundry.org/lager"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/elastic/cloud-sdk-go/pkg/models"
 	"github.com/pivotal-cf/brokerapi/v7/domain"
 	"github.com/spf13/viper"
@@ -16,57 +17,52 @@ import (
 
 // Config struct is a collection of all configuration items supported
 type Config struct {
-	Provider `yaml:"provider"`
-	Broker   `yaml:"broker"`
+	Provider `mapstructure:"provider"`
+	Broker   `mapstructure:"broker"`
 }
 
 // Provider struct includes all settings supported for the Provider
 type Provider struct {
-	Version   string `yaml:"version"`
-	URL       string `yaml:"url"`
-	APIKey    string `yaml:"apikey"`
-	UserAgent string `yaml:"useragent"`
-	Seed      string `yaml:"seed"`
+	Version   string `mapstructure:"version"`
+	URL       string `mapstructure:"url"`
+	APIKey    string `mapstructure:"apikey"`
+	UserAgent string `mapstructure:"useragent"`
+	Seed      string `mapstructure:"seed"`
 }
 
 // Broker struct includes all settings supported for the Broker
 type Broker struct {
-	Port     string `yaml:"port"`
-	Protocol string `yaml:"protocol"`
-	Username string `yaml:"username"`
-	Password string `yaml:"password"`
+	Address   string `mapstructure:"address"`
+	Port      string `mapstructure:"port"`
+	URLPrefix string `mapstructure:"urlprefix"`
+	Username  string `mapstructure:"username"`
+	Password  string `mapstructure:"password"`
+	SSLConfig SSL    `mapstructure:"ssl"`
+}
+
+// SSL struct to be nested under Broker configuration for the HTTP Server
+type SSL struct {
+	Enabled     bool   `mapstructure:"enabled"`
+	Certificate string `mapstructure:"certificate"`
+	Key         string `mapstructure:"key"`
 }
 
 // LoadConfig tries to read the defined config file and return a Config struct upon success
-func LoadConfig(logger lager.Logger) *Config {
-	v := viper.New()
-	v.SetConfigName("config")
-	v.SetConfigType("yaml")
-	v.AddConfigPath("./config")
-	err := v.ReadInConfig()
-	if err != nil {
-		logger.Fatal("Error loading config file:", err, lager.Data{
-			"config-path": "./config/config.yml",
-		})
-		return nil
-	}
+func LoadConfig(v *viper.Viper, logger lager.Logger) *Config {
 	var C Config
-	err = v.Unmarshal(&C)
+	spew.Dump(v)
+	err := v.Unmarshal(&C)
 	if err != nil {
-		logger.Fatal("Unable to import config file, Unmarshal failure:", err, lager.Data{
-			"config-path": "./config/config.yml",
-		})
+		fmt.Println(err)
 	}
-	logger.Info("Config file loaded", lager.Data{
-		"config-path": "./config/config.yml",
-	})
 	return &C
 }
 
 // LoadCatalog returns a collection of DeploymentRequests for the Provider
-// When Provisioning new cluster. It will also return a collection of all
-// the available Service Catalog that will be presented to any consumer
-// utilizing the API
+// when Provisioning new cluster. It will also return a collection of all
+// the available Service Catalog items that will be presented to any consumer
+// utilizing the API. The ID of the Service Catalog item will need to match the name
+// DeploymentRequest that should be used
 func LoadCatalog(logger lager.Logger) ([]models.DeploymentCreateRequest, []domain.Service) {
 	planfile, err := ioutil.ReadFile("./config/plans.json")
 	if err != nil {

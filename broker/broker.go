@@ -33,6 +33,8 @@ func NewBroker(brokerConfig config.Broker, serviceProvider provider.ServiceProvi
 		logger:         logger,
 		brokerServices: services,
 	}
+	logger.Info("Broker initiated successfully")
+
 	return broker
 }
 
@@ -42,10 +44,9 @@ func (b *Broker) NewBrokerHTTPServer(broker domain.ServiceBroker) http.Handler {
 		Username: b.brokerConfig.Username,
 		Password: b.brokerConfig.Password,
 	}
-
 	brokerAPI := brokerapi.New(broker, b.logger, credentials)
 	mux := http.NewServeMux()
-	mux.Handle("/", brokerAPI)
+	mux.Handle(b.brokerConfig.URLPrefix, brokerAPI)
 	mux.HandleFunc("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 	})

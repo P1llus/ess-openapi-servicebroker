@@ -66,7 +66,7 @@ func NewProvider(providerConfig config.Provider, plans []models.DeploymentCreate
 		Logger: logger,
 		Plans:  plans,
 	}
-	logger.Info("provider initiated successfully")
+	logger.Info("Provider initiated successfully")
 
 	return provider
 }

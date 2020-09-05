@@ -5,7 +5,13 @@ provider:
   useragent: "cloud-sdk-go"
   seed: "asdasdasd"
 broker:
+  address: localhost
   port: "8000"
   protocol: tcp
+  urlprefix: "/"
   username: USERNAME
   password: PASSWORD
+  ssl:
+    enabled: false
+    certificate: server.crt
+    key: server.key
