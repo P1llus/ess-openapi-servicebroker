@@ -37,6 +37,8 @@ jobs:
         - staticcheck $PKGS
         - gocyclo -over 19 $GO_FILES
         - golint -set_exit_status $(go list ./...)
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
     - stage: localbuild
       name: "Building Project"
       os: linux
@@ -57,8 +59,4 @@ jobs:
       go: $TRAVIS_GO_VERSION
       script:
         - go build -o servicebroker -v
-        - docker-compose up
-
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+        - docker-compose up  
