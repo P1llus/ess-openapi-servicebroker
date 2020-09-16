@@ -1,0 +1,445 @@
+{
+    "id": "0837d2cd080743e9be080bca163c0b92",
+    "name": "mock-test",
+    "healthy": true,
+    "resources": {
+        "elasticsearch": [
+            {
+                "ref_id": "my-elastic-cluster",
+                "id": "01fa285876f54e699da3d3d6fd8a84f1",
+                "region": "gcp-europe-west1",
+                "info": {
+                    "cluster_id": "01fa285876f54e699da3d3d6fd8a84f1",
+                    "cluster_name": "mock-test",
+                    "deployment_id": "0837d2cd080743e9be080bca163c0b92",
+                    "healthy": true,
+                    "status": "started",
+                    "plan_info": {
+                        "healthy": true,
+                        "current": {
+                            "plan_attempt_id": "dd7c35af-a7d2-4057-a713-da80687a8680",
+                            "healthy": true,
+                            "attempt_start_time": "2020-09-08T11:06:23.819Z",
+                            "attempt_end_time": "2020-09-08T11:07:33.691Z",
+                            "plan": {
+                                "cluster_topology": [
+                                    {
+                                        "node_type": {
+                                            "master": true,
+                                            "data": true,
+                                            "ingest": true
+                                        },
+                                        "zone_count": 1,
+                                        "elasticsearch": {
+                                            "enabled_built_in_plugins": []
+                                        },
+                                        "instance_configuration_id": "gcp.data.highio.1",
+                                        "size": {
+                                            "value": 1024,
+                                            "resource": "memory"
+                                        }
+                                    },
+                                    {
+                                        "node_type": {
+                                            "master": false,
+                                            "data": false,
+                                            "ingest": true
+                                        },
+                                        "zone_count": 2,
+                                        "elasticsearch": {
+                                            "enabled_built_in_plugins": []
+                                        },
+                                        "instance_configuration_id": "gcp.coordinating.1",
+                                        "size": {
+                                            "value": 0,
+                                            "resource": "memory"
+                                        }
+                                    },
+                                    {
+                                        "node_type": {
+                                            "master": true,
+                                            "data": false,
+                                            "ingest": false
+                                        },
+                                        "zone_count": 3,
+                                        "elasticsearch": {
+                                            "enabled_built_in_plugins": []
+                                        },
+                                        "instance_configuration_id": "gcp.master.1",
+                                        "size": {
+                                            "value": 0,
+                                            "resource": "memory"
+                                        }
+                                    },
+                                    {
+                                        "node_type": {
+                                            "master": false,
+                                            "data": false,
+                                            "ingest": false,
+                                            "ml": true
+                                        },
+                                        "zone_count": 1,
+                                        "elasticsearch": {
+                                            "enabled_built_in_plugins": []
+                                        },
+                                        "instance_configuration_id": "gcp.ml.1",
+                                        "size": {
+                                            "value": 0,
+                                            "resource": "memory"
+                                        }
+                                    }
+                                ],
+                                "elasticsearch": {
+                                    "version": "7.9.1"
+                                },
+                                "deployment_template": {
+                                    "id": "gcp-io-optimized"
+                                }
+                            },
+                            "plan_attempt_log": [],
+                            "source": {
+                                "facilitator": "adminconsole",
+                                "action": "deployments.create-deployment",
+                                "date": "2020-09-08T11:06:22.922Z",
+                                "user_id": "566256261",
+                                "remote_addresses": [
+                                    "8.8.8.8",
+                                    "4.4.4.4"
+                                ]
+                            }
+                        },
+                        "history": []
+                    },
+                    "elasticsearch": {
+                        "healthy": true,
+                        "shard_info": {
+                            "healthy": true,
+                            "available_shards": [
+                                {
+                                    "instance_name": "instance-0000000000",
+                                    "shard_count": 14
+                                }
+                            ],
+                            "unavailable_shards": [
+                                {
+                                    "instance_name": "instance-0000000000",
+                                    "shard_count": 0
+                                }
+                            ],
+                            "unavailable_replicas": [
+                                {
+                                    "instance_name": "instance-0000000000",
+                                    "replica_count": 0
+                                }
+                            ]
+                        },
+                        "master_info": {
+                            "healthy": true,
+                            "masters": [
+                                {
+                                    "master_node_id": "BeHSlSyqQLuuYLW3egJ0hg",
+                                    "master_instance_name": "instance-0000000000",
+                                    "instances": [
+                                        "instance-0000000000"
+                                    ]
+                                }
+                            ],
+                            "instances_with_no_master": []
+                        },
+                        "blocking_issues": {
+                            "healthy": true,
+                            "cluster_level": [],
+                            "index_level": []
+                        }
+                    },
+                    "metadata": {
+                        "version": 24,
+                        "last_modified": "2020-09-08T11:08:36.275Z",
+                        "endpoint": "ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io",
+                        "service_url": "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243",
+                        "sso_deep_linking_supported": false,
+                        "cloud_id": "mock-test:XXVyb4BlLXdlc3QxLmdjcC5jbG91ZC5lcy5pbyRiMmE2NTVlZDgxNGQ0ODhmOGZkNWMxMDc5MTlmZjYxYSQyMTljNTA1ODY5NTY0YzA5YWJiM2Y2NjA3ZjAyZjMwNQ==",
+                        "ports": {
+                            "http": 9200,
+                            "https": 9243,
+                            "transport_passthrough": 9400
+                        }
+                    },
+                    "topology": {
+                        "healthy": true,
+                        "instances": [
+                            {
+                                "instance_name": "instance-0000000000",
+                                "instance_configuration": {
+                                    "id": "gcp.data.highio.1",
+                                    "name": "gcp.data.highio.1",
+                                    "resource": "memory"
+                                },
+                                "service_version": "7.9.1",
+                                "service_id": "UeHSlRyqQLuuYLW3e2J0hh",
+                                "healthy": true,
+                                "container_started": true,
+                                "service_running": true,
+                                "maintenance_mode": false,
+                                "zone": "europe-west1-b",
+                                "allocator_id": "gi-2081130938705238822",
+                                "memory": {
+                                    "instance_capacity": 1024,
+                                    "memory_pressure": 31,
+                                    "native_memory_pressure": 83
+                                },
+                                "disk": {
+                                    "disk_space_available": 30720,
+                                    "disk_space_used": 18,
+                                    "storage_multiplier": 30.0
+                                },
+                                "service_roles": [
+                                    "data",
+                                    "master",
+                                    "ingest"
+                                ]
+                            }
+                        ]
+                    },
+                    "associated_kibana_clusters": [
+                        {
+                            "kibana_id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                            "enabled": true,
+                            "links": {}
+                        }
+                    ],
+                    "associated_apm_clusters": [
+                        {
+                            "apm_id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                            "enabled": true,
+                            "links": {}
+                        }
+                    ],
+                    "associated_appsearch_clusters": [],
+                    "associated_enterprise_search_clusters": [],
+                    "snapshots": {
+                        "healthy": true,
+                        "count": 9,
+                        "latest_successful": true,
+                        "latest_status": "SUCCESS",
+                        "scheduled_time": "2020-09-08T16:00:00.000Z",
+                        "latest_end_time": "2020-09-08T15:30:04.750Z",
+                        "latest_successful_end_time": "2020-09-08T15:30:04.750Z",
+                        "recent_success": true
+                    },
+                    "external_links": [],
+                    "links": {},
+                    "region": "gcp-europe-west1",
+                    "locked": false
+                }
+            }
+        ],
+        "kibana": [
+            {
+                "ref_id": "my-kibana-first",
+                "elasticsearch_cluster_ref_id": "my-elastic-cluster",
+                "id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                "region": "gcp-europe-west1",
+                "info": {
+                    "cluster_id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                    "cluster_name": "mock-test",
+                    "elasticsearch_cluster": {
+                        "elasticsearch_id": "01fa285876f54e699da3d3d6fd8a84f1",
+                        "links": {}
+                    },
+                    "deployment_id": "0837d2cd080743e9be080bca163c0b92",
+                    "healthy": true,
+                    "status": "started",
+                    "plan_info": {
+                        "healthy": true,
+                        "current": {
+                            "plan_attempt_id": "9e23c8ab-6eef-4b6e-aa1f-56a9757c3620",
+                            "healthy": true,
+                            "attempt_start_time": "2020-09-08T11:08:35.458Z",
+                            "attempt_end_time": "2020-09-08T11:10:09.063Z",
+                            "plan": {
+                                "cluster_topology": [
+                                    {
+                                        "instance_configuration_id": "gcp.kibana.1",
+                                        "size": {
+                                            "value": 1024,
+                                            "resource": "memory"
+                                        },
+                                        "zone_count": 1
+                                    }
+                                ],
+                                "kibana": {
+                                    "version": "7.9.1",
+                                    "system_settings": {}
+                                },
+                                "transient": {
+                                    "strategy": {
+                                        "autodetect": {}
+                                    }
+                                }
+                            },
+                            "plan_attempt_log": [],
+                            "source": {
+                                "facilitator": "constructor",
+                                "action": "apm.force-kibana-plan",
+                                "date": "2020-09-08T11:08:35.302Z"
+                            }
+                        },
+                        "history": []
+                    },
+                    "metadata": {
+                        "version": 13,
+                        "last_modified": "2020-09-08T11:08:36.170Z",
+                        "endpoint": "ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io",
+                        "service_url": "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243",
+                        "sso_url": "/sso/v1/go/test",
+                        "sso_deep_linking_supported": true,
+                        "ports": {
+                            "http": 9200,
+                            "https": 9243,
+                            "transport_passthrough": 9400
+                        }
+                    },
+                    "topology": {
+                        "healthy": true,
+                        "instances": [
+                            {
+                                "instance_name": "instance-0000000001",
+                                "instance_configuration": {
+                                    "id": "gcp.kibana.1",
+                                    "name": "gcp.kibana.1",
+                                    "resource": "memory"
+                                },
+                                "service_version": "7.9.1",
+                                "healthy": true,
+                                "container_started": true,
+                                "service_running": true,
+                                "maintenance_mode": false,
+                                "zone": "europe-west1-d",
+                                "allocator_id": "gi-5903761008151625046",
+                                "memory": {
+                                    "instance_capacity": 1024,
+                                    "native_memory_pressure": 52
+                                }
+                            }
+                        ]
+                    },
+                    "external_links": [],
+                    "links": {},
+                    "region": "gcp-europe-west1"
+                }
+            }
+        ],
+        "apm": [
+            {
+                "ref_id": "main-apm",
+                "elasticsearch_cluster_ref_id": "my-elastic-cluster",
+                "id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                "region": "gcp-europe-west1",
+                "info": {
+                    "id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                    "name": "mock-test",
+                    "elasticsearch_cluster": {
+                        "elasticsearch_id": "b2a655ed814d488f8fd3c105919ff60a",
+                        "links": {}
+                    },
+                    "deployment_id": "0837d2cd080743e9be080bca163c0b92",
+                    "healthy": true,
+                    "status": "started",
+                    "plan_info": {
+                        "healthy": true,
+                        "current": {
+                            "plan_attempt_id": "591686c1-4b39-42d2-b748-33a63e957e00",
+                            "healthy": true,
+                            "attempt_start_time": "2020-09-08T11:06:27.190Z",
+                            "attempt_end_time": "2020-09-08T11:08:35.320Z",
+                            "plan": {
+                                "cluster_topology": [
+                                    {
+                                        "instance_configuration_id": "gcp.apm.1",
+                                        "size": {
+                                            "value": 512,
+                                            "resource": "memory"
+                                        },
+                                        "zone_count": 1
+                                    }
+                                ],
+                                "apm": {
+                                    "version": "7.9.1",
+                                    "system_settings": {
+                                        "secret_token": "ry7BPaCj433LfQTXfL"
+                                    }
+                                },
+                                "transient": {
+                                    "strategy": {
+                                        "autodetect": {}
+                                    }
+                                }
+                            },
+                            "plan_attempt_log": [],
+                            "source": {
+                                "facilitator": "adminconsole",
+                                "action": "deployments.create-deployment",
+                                "date": "2020-09-08T11:06:22.922Z",
+                                "user_id": "562256261",
+                                "remote_addresses": [
+                                    "5.5.5.5",
+                                    "4.4.4.4"
+                                ]
+                            }
+                        },
+                        "history": []
+                    },
+                    "metadata": {
+                        "version": 8,
+                        "last_modified": "2020-09-08T11:06:27.877Z",
+                        "endpoint": "0837d2cd080743e9be080bca163c0b92.apm.europe-west1.gcp.cloud.es.io",
+                        "service_url": "https://0837d2cd080743e9be080bca163c0b92.apm.europe-west1.gcp.cloud.es.io",
+                        "sso_deep_linking_supported": false,
+                        "ports": {
+                            "http": 80,
+                            "https": 443,
+                            "transport_passthrough": 9400
+                        }
+                    },
+                    "topology": {
+                        "healthy": true,
+                        "instances": [
+                            {
+                                "instance_name": "instance-0000000000",
+                                "instance_configuration": {
+                                    "id": "gcp.apm.1",
+                                    "name": "gcp.apm.1",
+                                    "resource": "memory"
+                                },
+                                "service_version": "7.9.1",
+                                "healthy": true,
+                                "container_started": true,
+                                "service_running": true,
+                                "maintenance_mode": false,
+                                "zone": "europe-west1-c",
+                                "allocator_id": "gi-6647916860124649513",
+                                "memory": {
+                                    "instance_capacity": 512,
+                                    "native_memory_pressure": 4
+                                }
+                            }
+                        ]
+                    },
+                    "external_links": [],
+                    "links": {},
+                    "region": "gcp-europe-west1"
+                }
+            }
+        ],
+        "appsearch": [],
+        "enterprise_search": []
+    },
+    "metadata": {
+        "owner_id": "266246251",
+        "system_owned": false,
+        "hidden": false,
+        "last_modified": "2020-09-08T11:08:36.275Z",
+        "last_resource_plan_modified": "2020-09-08T11:10:09.063Z"
+    }
+}
