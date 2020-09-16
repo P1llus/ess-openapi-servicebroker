@@ -2,6 +2,7 @@ coverage:
   status:
     project:
       default:
+        comment: false
         target: auto
         threshold: 0%
         base: auto 
