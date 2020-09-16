@@ -1,16 +1,16 @@
 {
     "ref_id": "main-kibana",
     "elasticsearch_cluster_ref_id": "main-elasticsearch",
-    "id": "063e2805388445ebac1579adb061015a",
+    "id": "ca8ac6555f0d43d8ba1048c98ea60265",
     "region": "gcp-europe-west1",
     "info": {
         "cluster_id": "063e2805388445ebac1579adb061015a",
-        "cluster_name": "sa-marius-dev",
+        "cluster_name": "mock-test",
         "elasticsearch_cluster": {
-            "elasticsearch_id": "vf1a2bd0777e4b23befdc8906f8622df",
+            "elasticsearch_id": "01fa285876f54e699da3d3d6fd8a84f1",
             "links": {}
         },
-        "deployment_id": "0698165781ca4eb9a07d1ce0dc5e8c92",
+        "deployment_id": "0837d2cd080743e9be080bca163c0b92",
         "healthy": true,
         "status": "started",
         "plan_info": {
@@ -53,8 +53,8 @@
         "metadata": {
             "version": 14,
             "last_modified": "2020-08-26T08:57:32.010Z",
-            "endpoint": "063e2805388445ebac1579adb061015a.europe-west1.gcp.cloud.es.io",
-            "service_url": "https://063e2805388445ebac1579adb061015a.europe-west1.gcp.cloud.es.io:9243",
+            "endpoint": "ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io",
+            "service_url": "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243",
             "sso_url": "/sso/v1/go/test",
             "sso_deep_linking_supported": true,
             "ports": {

@@ -155,10 +155,10 @@
                     "metadata": {
                         "version": 24,
                         "last_modified": "2020-09-08T11:08:36.275Z",
-                        "endpoint": "ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io",
-                        "service_url": "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243",
+                        "endpoint": "01fa285876f54e699da3d3d6fd8a84f1.europe-west1.gcp.cloud.es.io",
+                        "service_url": "https://01fa285876f54e699da3d3d6fd8a84f1.europe-west1.gcp.cloud.es.io:9243",
                         "sso_deep_linking_supported": false,
-                        "cloud_id": "mock-test:XXVyb4BlLXdlc3QxLmdjcC5jbG91ZC5lcy5pbyRiMmE2NTVlZDgxNGQ0ODhmOGZkNWMxMDc5MTlmZjYxYSQyMTljNTA1ODY5NTY0YzA5YWJiM2Y2NjA3ZjAyZjMwNQ==",
+                        "cloud_id": "mock-test:MTkyLjE2OC40NC4xMC5pcC5lcy5pbzo5MjQzJDAxZmEyODU4NzZmNTRlNjk5ZGEzZDNkNmZkOGE4NGYxJGNhOGFjNjU1NWYwZDQzZDhiYTEwNDhjOThlYTYwMjY1",
                         "ports": {
                             "http": 9200,
                             "https": 9243,
@@ -241,7 +241,7 @@
                 "id": "ca8ac6555f0d43d8ba1048c98ea60265",
                 "region": "gcp-europe-west1",
                 "info": {
-                    "cluster_id": "ca8ac6555f0d43d8ba1048c98ea60265",
+                    "cluster_id": "0837d2cd080743e9be080bca163c0b92",
                     "cluster_name": "mock-test",
                     "elasticsearch_cluster": {
                         "elasticsearch_id": "01fa285876f54e699da3d3d6fd8a84f1",
@@ -340,7 +340,7 @@
                     "id": "ca8ac6555f0d43d8ba1048c98ea60265",
                     "name": "mock-test",
                     "elasticsearch_cluster": {
-                        "elasticsearch_id": "b2a655ed814d488f8fd3c105919ff60a",
+                        "elasticsearch_id": "01fa285876f54e699da3d3d6fd8a84f1",
                         "links": {}
                     },
                     "deployment_id": "0837d2cd080743e9be080bca163c0b92",
@@ -393,8 +393,8 @@
                     "metadata": {
                         "version": 8,
                         "last_modified": "2020-09-08T11:06:27.877Z",
-                        "endpoint": "0837d2cd080743e9be080bca163c0b92.apm.europe-west1.gcp.cloud.es.io",
-                        "service_url": "https://0837d2cd080743e9be080bca163c0b92.apm.europe-west1.gcp.cloud.es.io",
+                        "endpoint": "01fa285876f54e699da3d3d6fd8a84f1.apm.europe-west1.gcp.cloud.es.io",
+                        "service_url": "https://01fa285876f54e699da3d3d6fd8a84f1.apm.europe-west1.gcp.cloud.es.io",
                         "sso_deep_linking_supported": false,
                         "ports": {
                             "http": 80,

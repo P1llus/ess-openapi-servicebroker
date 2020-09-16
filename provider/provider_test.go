@@ -100,7 +100,7 @@ func TestProvision(t *testing.T) {
 			}
 			w.WriteHeader(http.StatusCreated)
 			json.NewEncoder(w).Encode(file)
-		case "/api/v1/deployments/063e2805388445ebbc7579fdb051014a/kibana/":
+		case "/api/v1/deployments/0837d2cd080743e9be080bca163c0b92/kibana/":
 			file := loadResponse("getKibanaResponse", 0)
 			if file == nil {
 				t.Error("Response file not found")
@@ -124,7 +124,8 @@ func TestProvision(t *testing.T) {
 	}
 	dashboardURL, operationData, provisionErr := runtimeProvider.Provision(context.Background(), provisionData)
 	assert.Equal(t, provisionErr, nil)
-	assert.Equal(t, dashboardURL, "https://063e2805388445ebbc7579fdb051014a.europe-west1.gcp.cloud.es.io:9243", "Checking Dashboard URL")
+
+	assert.Equal(t, dashboardURL, "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243", "Checking Dashboard URL")
 	assert.Equal(t, operationData, `{"Action":"provision","DeploymentID":"0837d2cd080743e9be080bca163c0b92"}`, "Checking returned operationData")
 	t.Cleanup(server.Close)
 }
@@ -163,7 +164,7 @@ func TestDeprovision(t *testing.T) {
 	}
 	operationData, deprovisionErr := runtimeProvider.Deprovision(context.Background(), deprovisionData)
 	assert.Equal(t, deprovisionErr, nil, "Ensure Deprovision error is nil")
-	assert.Equal(t, operationData, `{"Action":"deprovision","DeploymentID":"61b9a27f0a8c47d9be1c1b2d5986bbc8"}`, "Ensure Deprovision error is nil")
+	assert.Equal(t, operationData, `{"Action":"deprovision","DeploymentID":"0837d2cd080743e9be080bca163c0b92"}`, "Ensure Deprovision error is nil")
 
 	t.Cleanup(server.Close)
 }
@@ -205,7 +206,7 @@ func TestBind(t *testing.T) {
 	}
 	credentials, operationData, bindErr := runtimeProvider.Bind(context.Background(), bindData)
 	assert.Equal(t, credentials, Credentials{Hostname: "", URI: "", Port: "", Username: "bind-test1", Password: "a0c37ed81aede644bd333d552bfc2fa339a94841"})
-	assert.Equal(t, operationData, `{"Action":"binding","DeploymentID":"61b9a27f0a8c47d9be1c1b2d5986bbc8","UserID":"bind-test1"}`)
+	assert.Equal(t, operationData, `{"Action":"binding","DeploymentID":"0837d2cd080743e9be080bca163c0b92","UserID":"bind-test1"}`)
 	assert.Equal(t, bindErr, nil)
 
 	t.Cleanup(server.Close)
@@ -248,7 +249,7 @@ func TestUnbind(t *testing.T) {
 	}
 	operationData, unbindErr := runtimeProvider.Unbind(context.Background(), unbindData)
 
-	assert.Equal(t, operationData, `{"Action":"unbind","DeploymentID":"61b9a27f0a8c47d9be1c1b2d5986bbc8","UserID":"bind-test1"}`, "Testing Unbind")
+	assert.Equal(t, operationData, `{"Action":"unbind","DeploymentID":"0837d2cd080743e9be080bca163c0b92","UserID":"bind-test1"}`, "Testing Unbind")
 	assert.Equal(t, unbindErr, nil)
 
 	t.Cleanup(server.Close)
@@ -259,7 +260,7 @@ func TestLastOperation(t *testing.T) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Header().Set("Accept", "application/json")
 		switch path := r.URL.Path; path {
-		case "/api/v1/deployments/61b9a27f0a8c47d9be1c1b2d5986bbc8":
+		case "/api/v1/deployments/0837d2cd080743e9be080bca163c0b92":
 			file := loadResponse("deploymentStatusResponse", 0)
 			if file == nil {
 				t.Error("Response file not found")
@@ -274,7 +275,7 @@ func TestLastOperation(t *testing.T) {
 
 	unbindContext := &OperationData{
 		Action:       "provision",
-		DeploymentID: "61b9a27f0a8c47d9be1c1b2d5986bbc8",
+		DeploymentID: "0837d2cd080743e9be080bca163c0b92",
 		UserID:       "elastic-123123",
 	}
 	var unbindContextJSON []byte

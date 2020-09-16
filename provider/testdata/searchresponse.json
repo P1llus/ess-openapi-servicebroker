@@ -3,19 +3,19 @@
     "match_count" : 1,
     "deployments" : [
       {
-        "id" : "a1b9a27f0a8c47d9be1c1b2d5986bac8",
+        "id" : "0837d2cd080743e9be080bca163c0b92",
         "name" : "mock-test",
         "healthy" : true,
         "resources" : {
           "elasticsearch" : [
             {
               "ref_id" : "main-elasticsearch",
-              "id" : "b2a655ed815d488f8fd3c107920ff41a",
+              "id" : "01fa285876f54e699da3d3d6fd8a84f1",
               "region" : "gcp-europe-west1",
               "info" : {
-                "cluster_id" : "b2a655ed814d489f8fa5c107919ff61b",
+                "cluster_id" : "0837d2cd080743e9be080bca163c0b92",
                 "cluster_name" : "mock-test",
-                "deployment_id" : "61b9a27f0a8c47d9be1c1b2d5986bbc8",
+                "deployment_id" : "0837d2cd080743e9be080bca163c0b92",
                 "healthy" : true,
                 "status" : "started",
                 "plan_info" : {
@@ -622,10 +622,10 @@
                 "metadata" : {
                   "version" : 24,
                   "last_modified" : "2020-09-08T11:08:36.275Z",
-                  "endpoint" : "b2a655ed814d489f8fa5c107919ff61b.europe-west1.gcp.cloud.es.io",
-                  "service_url" : "https://b2a655ed814d489f8fa5c107919ff61b.europe-west1.gcp.cloud.es.io:9243",
+                  "endpoint" : "01fa285876f54e699da3d3d6fd8a84f1.europe-west1.gcp.cloud.es.io",
+                  "service_url" : "https://01fa285876f54e699da3d3d6fd8a84f1.europe-west1.gcp.cloud.es.io:9243",
                   "sso_deep_linking_supported" : false,
-                  "cloud_id" : "mock-test:AXVyb3ClLXdlc3QxLmdjcC5jaG91ZC5lcy5pbyRiMmE2NTVlZDgxNGQ0ODhmOGZkNWMxMDc5MTlmZjYxYSQyMTljNTA1ODY5NTY0YzA5YWJiM2Y2NjA3ZjAyZjMwNQ==",
+                  "cloud_id" : "mock-test:MTkyLjE2OC40NC4xMC5pcC5lcy5pbzo5MjQzJDAxZmEyODU4NzZmNTRlNjk5ZGEzZDNkNmZkOGE4NGYxJGNhOGFjNjU1NWYwZDQzZDhiYTEwNDhjOThlYTYwMjY1",
                   "ports" : {
                     "http" : 9200,
                     "https" : 9243,
@@ -665,7 +665,7 @@
                 ],
                 "associated_kibana_clusters" : [
                   {
-                    "kibana_id" : "319c505869564a09abb3f6608f02f307",
+                    "kibana_id" : "ca8ac6555f0d43d8ba1048c98ea60265",
                     "enabled" : true,
                     "links" : {
                       
@@ -674,7 +674,7 @@
                 ],
                 "associated_apm_clusters" : [
                   {
-                    "apm_id" : "b4aecc05f38c4c4c8ae07aababd5b860",
+                    "apm_id" : "ca8ac6555f0d43d8ba1048c98ea60265",
                     "enabled" : true,
                     "links" : {
                       
@@ -757,18 +757,18 @@
             {
               "ref_id" : "main-kibana",
               "elasticsearch_cluster_ref_id" : "main-elasticsearch",
-              "id" : "219c505879565c09abb3f5607f02f303",
+              "id" : "ca8ac6555f0d43d8ba1048c98ea60265",
               "region" : "gcp-europe-west1",
               "info" : {
-                "cluster_id" : "219c505879565c09abb3f5607f02f303",
+                "cluster_id" : "0837d2cd080743e9be080bca163c0b92",
                 "cluster_name" : "mock-test",
                 "elasticsearch_cluster" : {
-                  "elasticsearch_id" : "b2a655ed814d489f8fa5c107919ff61b",
+                  "elasticsearch_id" : "01fa285876f54e699da3d3d6fd8a84f1",
                   "links" : {
                     
                   }
                 },
-                "deployment_id" : "61b9a27f0a8c47d9be1c1b2d5986bbc8",
+                "deployment_id" : "0837d2cd080743e9be080bca163c0b92",
                 "healthy" : true,
                 "status" : "started",
                 "plan_info" : {
@@ -1131,8 +1131,8 @@
                 "metadata" : {
                   "version" : 13,
                   "last_modified" : "2020-09-08T11:08:36.170Z",
-                  "endpoint" : "219c505879565c09abb3f5607f02f303.europe-west1.gcp.cloud.es.io",
-                  "service_url" : "https://219c505879565c09abb3f5607f02f303.europe-west1.gcp.cloud.es.io:9243",
+                  "endpoint" : "ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io",
+                  "service_url" : "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243",
                   "sso_url" : "/sso/v1/go/test",
                   "sso_deep_linking_supported" : true,
                   "ports" : {
@@ -1191,18 +1191,18 @@
             {
               "ref_id" : "main-apm",
               "elasticsearch_cluster_ref_id" : "main-elasticsearch",
-              "id" : "b4aecc05f38c4c4c8ae07aababd5b860",
+              "id" : "ca8ac6555f0d43d8ba1048c98ea60265",
               "region" : "gcp-europe-west1",
               "info" : {
-                "id" : "b4aecc05f38c4c4c8ae07aababd5b860",
+                "id" : "ca8ac6555f0d43d8ba1048c98ea60265",
                 "name" : "mock-test",
                 "elasticsearch_cluster" : {
-                  "elasticsearch_id" : "b2a655ed814d489f8fa5c107919ff61b",
+                  "elasticsearch_id" : "01fa285876f54e699da3d3d6fd8a84f1",
                   "links" : {
                     
                   }
                 },
-                "deployment_id" : "61b9a27f0a8c47d9be1c1b2d5986bbc8",
+                "deployment_id" : "0837d2cd080743e9be080bca163c0b92",
                 "healthy" : true,
                 "status" : "started",
                 "plan_info" : {
@@ -1454,8 +1454,8 @@
                 "metadata" : {
                   "version" : 8,
                   "last_modified" : "2020-09-08T11:06:27.877Z",
-                  "endpoint" : "b4aecc05f38c4c4c8ae07aababd5b860.apm.europe-west1.gcp.cloud.es.io",
-                  "service_url" : "https://b4aecc05f38c4c4c8ae07aababd5b860.apm.europe-west1.gcp.cloud.es.io",
+                  "endpoint" : "ca8ac6555f0d43d8ba1048c98ea60265.apm.europe-west1.gcp.cloud.es.io",
+                  "service_url" : "https://ca8ac6555f0d43d8ba1048c98ea60265.apm.europe-west1.gcp.cloud.es.io",
                   "sso_deep_linking_supported" : false,
                   "ports" : {
                     "http" : 80,
