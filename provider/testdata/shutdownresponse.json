@@ -1,0 +1,29 @@
+{
+    "id" : "0837d2cd080743e9be080bca163c0b92",
+    "name" : "test-shutdown",
+    "orphaned" : {
+      "elasticsearch" : [
+        {
+          "id" : "01fa285876f54e699da3d3d6fd8a84f1",
+          "dependents" : [
+            {
+              "id" : "ca8ac6555f0d43d8ba1048c98ea60265",
+              "kind" : "kibana"
+            },
+            {
+              "id" : "ca8ac6555f0d43d8ba1048c98ea60265",
+              "kind" : "apm"
+            }
+          ]
+        }
+      ],
+      "kibana" : [
+      ],
+      "apm" : [
+      ],
+      "appsearch" : [
+      ],
+      "enterprise_search" : [
+      ]
+    }
+  }

@@ -1,0 +1,94 @@
+{
+    "ref_id": "main-kibana",
+    "elasticsearch_cluster_ref_id": "main-elasticsearch",
+    "id": "ca8ac6555f0d43d8ba1048c98ea60265",
+    "region": "gcp-europe-west1",
+    "info": {
+        "cluster_id": "063e2805388445ebac1579adb061015a",
+        "cluster_name": "mock-test",
+        "elasticsearch_cluster": {
+            "elasticsearch_id": "01fa285876f54e699da3d3d6fd8a84f1",
+            "links": {}
+        },
+        "deployment_id": "0837d2cd080743e9be080bca163c0b92",
+        "healthy": true,
+        "status": "started",
+        "plan_info": {
+            "healthy": true,
+            "current": {
+                "plan_attempt_id": "2d30592a-0b3c-412d-8951-f0578eac0467",
+                "healthy": true,
+                "attempt_start_time": "2020-08-26T08:57:31.290Z",
+                "attempt_end_time": "2020-08-26T08:59:04.988Z",
+                "plan": {
+                    "cluster_topology": [
+                        {
+                            "instance_configuration_id": "gcp.kibana.1",
+                            "size": {
+                                "value": 1024,
+                                "resource": "memory"
+                            },
+                            "zone_count": 1
+                        }
+                    ],
+                    "kibana": {
+                        "version": "7.9.0",
+                        "system_settings": {}
+                    },
+                    "transient": {
+                        "strategy": {
+                            "autodetect": {}
+                        }
+                    }
+                },
+                "plan_attempt_log": [],
+                "source": {
+                    "facilitator": "constructor",
+                    "action": "apm.force-kibana-plan",
+                    "date": "2020-08-26T08:57:31.133Z"
+                }
+            },
+            "history": []
+        },
+        "metadata": {
+            "version": 14,
+            "last_modified": "2020-08-26T08:57:32.010Z",
+            "endpoint": "ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io",
+            "service_url": "https://ca8ac6555f0d43d8ba1048c98ea60265.europe-west1.gcp.cloud.es.io:9243",
+            "sso_url": "/sso/v1/go/test",
+            "sso_deep_linking_supported": true,
+            "ports": {
+                "http": 9200,
+                "https": 9243,
+                "transport_passthrough": 9400
+            }
+        },
+        "topology": {
+            "healthy": true,
+            "instances": [
+                {
+                    "instance_name": "instance-0000000001",
+                    "instance_configuration": {
+                        "id": "gcp.kibana.1",
+                        "name": "gcp.kibana.1",
+                        "resource": "memory"
+                    },
+                    "service_version": "7.9.0",
+                    "healthy": true,
+                    "container_started": true,
+                    "service_running": true,
+                    "maintenance_mode": false,
+                    "zone": "europe-west1-d",
+                    "allocator_id": "gi-1654622788483048411",
+                    "memory": {
+                        "instance_capacity": 1024,
+                        "native_memory_pressure": 48
+                    }
+                }
+            ]
+        },
+        "external_links": [],
+        "links": {},
+        "region": "gcp-europe-west1"
+    }
+}

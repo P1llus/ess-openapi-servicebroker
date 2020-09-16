@@ -51,10 +51,11 @@ type Credentials struct {
 // NewProvider returns a new Provider struct that includes the related Logger, Config and Plans objects
 func NewProvider(providerConfig config.Provider, plans []models.DeploymentCreateRequest, logger lager.Logger) *Provider {
 	essconfig, err := api.NewAPI(api.Config{
-		Client:     new(http.Client),
-		AuthWriter: auth.APIKey(providerConfig.APIKey),
-		Host:       fmt.Sprintf("%s/api/%s", providerConfig.URL, providerConfig.Version),
-		UserAgent:  fmt.Sprintf("%s/%s", providerConfig.UserAgent, providerConfig.Version),
+		Client:        new(http.Client),
+		AuthWriter:    auth.APIKey(providerConfig.APIKey),
+		Host:          fmt.Sprintf("%s/api/%s", providerConfig.URL, providerConfig.Version),
+		UserAgent:     fmt.Sprintf("%s/%s", providerConfig.UserAgent, providerConfig.Version),
+		SkipTLSVerify: true,
 	})
 	if err != nil {
 		logger.Fatal("failed to create provider:", err)
@@ -76,7 +77,10 @@ func NewProvider(providerConfig config.Provider, plans []models.DeploymentCreate
 func (p *Provider) Provision(ctx context.Context, provision *ProvisionData) (string, string, error) {
 	deploymentTemplate, err := config.FindDeploymentTemplateFromPlan(p.Plans, provision.Plan)
 	if err != nil {
-		fmt.Println(err)
+		p.Logger.Error("unable to find template:", err, lager.Data{
+			"instance-id": provision.InstanceID,
+		})
+		return "", "", err
 	}
 	deploymentTemplate.Name = provision.InstanceID
 	res, err := ess.CreateDeployment(p.Client, &deploymentTemplate, provision.InstanceID)
@@ -86,9 +90,10 @@ func (p *Provider) Provision(ctx context.Context, provision *ProvisionData) (str
 		})
 		return "", "", err
 	}
+
 	deploymentID := *res.ID
 
-	newKibana, _ := ess.GetKibana(p.Client, "main-kibana")
+	newKibana, _ := ess.GetKibana(p.Client, deploymentID)
 	dashboardURL := fmt.Sprintf("https://%s:%d", newKibana.Info.Metadata.Endpoint, *newKibana.Info.Metadata.Ports.HTTPS)
 
 	provisionContext := &OperationData{

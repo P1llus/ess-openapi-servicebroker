@@ -124,7 +124,7 @@ func initConfig() error {
 
 func run() error {
 	runtimeConfig := config.LoadConfig(defaultViper, defaultLogger)
-	plans, services := config.LoadCatalog(defaultLogger)
+	plans, services := config.LoadCatalog(defaultConfPath, defaultLogger)
 
 	runtimeProvider := provider.NewProvider(runtimeConfig.Provider, plans, defaultLogger)
 	runtimeBroker := broker.NewBroker(runtimeConfig.Broker, runtimeProvider, services, defaultLogger)

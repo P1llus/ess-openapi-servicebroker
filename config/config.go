@@ -9,7 +9,6 @@ import (
 	"io/ioutil"
 
 	"code.cloudfoundry.org/lager"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/elastic/cloud-sdk-go/pkg/models"
 	"github.com/pivotal-cf/brokerapi/v7/domain"
 	"github.com/spf13/viper"
@@ -50,7 +49,6 @@ type SSL struct {
 // LoadConfig tries to read the defined config file and return a Config struct upon success
 func LoadConfig(v *viper.Viper, logger lager.Logger) *Config {
 	var C Config
-	spew.Dump(v)
 	err := v.Unmarshal(&C)
 	if err != nil {
 		fmt.Println(err)
@@ -63,11 +61,11 @@ func LoadConfig(v *viper.Viper, logger lager.Logger) *Config {
 // the available Service Catalog items that will be presented to any consumer
 // utilizing the API. The ID of the Service Catalog item will need to match the name
 // DeploymentRequest that should be used
-func LoadCatalog(logger lager.Logger) ([]models.DeploymentCreateRequest, []domain.Service) {
-	planfile, err := ioutil.ReadFile("./config/plans.json")
+func LoadCatalog(path string, logger lager.Logger) ([]models.DeploymentCreateRequest, []domain.Service) {
+	planfile, err := ioutil.ReadFile(fmt.Sprintf("%s/plans.json", path))
 	if err != nil {
 		logger.Fatal("Error loading plans:", err, lager.Data{
-			"plan-path": "./config/plans.json",
+			"plan-path": fmt.Sprintf("%s/plans.json", path),
 		})
 	}
 	var plans []models.DeploymentCreateRequest
@@ -75,15 +73,15 @@ func LoadCatalog(logger lager.Logger) ([]models.DeploymentCreateRequest, []domai
 	err = json.Unmarshal([]byte(planfile), &plans)
 	if err != nil {
 		logger.Fatal("Unable to import plans file, Unmarshal failure:", err, lager.Data{
-			"plan-path": "./config/plans.json",
+			"plan-path": fmt.Sprintf("%s/plans.json", path),
 		})
 		return []models.DeploymentCreateRequest{}, []domain.Service{}
 	}
 	logger.Info("Plans file loaded", lager.Data{
-		"plan-path": "./config/plans.json",
+		"plan-path": fmt.Sprintf("%s/plans.json", path),
 	})
 
-	servicefile, err := ioutil.ReadFile("./config/services.json")
+	servicefile, err := ioutil.ReadFile(fmt.Sprintf("%s/services.json", path))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -92,12 +90,12 @@ func LoadCatalog(logger lager.Logger) ([]models.DeploymentCreateRequest, []domai
 	err = json.Unmarshal([]byte(servicefile), &services)
 	if err != nil {
 		logger.Fatal("Unable to import services file, Unmarshal failure:", err, lager.Data{
-			"service-path": "./config/services.json",
+			"service-path": fmt.Sprintf("%s/services.json", path),
 		})
 		return []models.DeploymentCreateRequest{}, []domain.Service{}
 	}
 	logger.Info("Services file loaded", lager.Data{
-		"service-path": "./config/services.json",
+		"service-path": fmt.Sprintf("%s/services.json", path),
 	})
 
 	return plans, services
