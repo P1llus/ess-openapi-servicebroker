@@ -71,8 +71,8 @@ func GetDeployment(api *api.API, id string) (*models.DeploymentGetResponse, erro
 
 // GetKibana is a wrapper around deploymentapi.GetKibana to work with the servicebroker
 // This function returns a single Kibana instance specified by the id parameter
-func GetKibana(api *api.API, id string) (*models.KibanaResourceInfo, error) {
-	res, err := deploymentapi.GetKibana(deploymentapi.GetParams{API: api, DeploymentID: id})
+func GetKibana(api *api.API, id string, refid string) (*models.KibanaResourceInfo, error) {
+	res, err := deploymentapi.GetKibana(deploymentapi.GetParams{API: api, DeploymentID: id, RefID: refid})
 	if err != nil {
 		fmt.Println(err)
 		return nil, nil
