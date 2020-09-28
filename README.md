@@ -4,4 +4,6 @@
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+**Currently quite WIP, please do not use in production at this moment**
+
 Work in progress for a Elastic Cloud Servicebroker
