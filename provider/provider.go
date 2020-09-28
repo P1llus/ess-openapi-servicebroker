@@ -93,7 +93,7 @@ func (p *Provider) Provision(ctx context.Context, provision *ProvisionData) (str
 
 	deploymentID := *res.ID
 
-	newKibana, _ := ess.GetKibana(p.Client, deploymentID)
+	newKibana, _ := ess.GetKibana(p.Client, deploymentID, provision.InstanceID)
 	dashboardURL := fmt.Sprintf("https://%s:%d", newKibana.Info.Metadata.Endpoint, *newKibana.Info.Metadata.Ports.HTTPS)
 
 	provisionContext := &OperationData{

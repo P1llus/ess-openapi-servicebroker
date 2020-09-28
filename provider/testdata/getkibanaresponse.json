@@ -4,13 +4,13 @@
     "id": "ca8ac6555f0d43d8ba1048c98ea60265",
     "region": "gcp-europe-west1",
     "info": {
-        "cluster_id": "063e2805388445ebac1579adb061015a",
+        "cluster_id": "e343104434ee3a8e748e1f3c6a48c656",
         "cluster_name": "mock-test",
         "elasticsearch_cluster": {
             "elasticsearch_id": "01fa285876f54e699da3d3d6fd8a84f1",
             "links": {}
         },
-        "deployment_id": "0837d2cd080743e9be080bca163c0b92",
+        "deployment_id": "e343104434ee3a8e748e1f3c6a48c656",
         "healthy": true,
         "status": "started",
         "plan_info": {
