@@ -93,7 +93,20 @@ func (p *Provider) Provision(ctx context.Context, provision *ProvisionData) (str
 
 	deploymentID := *res.ID
 
-	newKibana, _ := ess.GetKibana(p.Client, deploymentID, provision.InstanceID)
+	p.Logger.Info("retrieve dashboard url", lager.Data{
+		"instance-id":   provision.InstanceID,
+		"deployment-id": deploymentID,
+	})
+
+	newKibana, err := ess.GetKibana(p.Client, deploymentID, provision.InstanceID)
+	if err != nil {
+		p.Logger.Error("unable to find kibana dashboard:", err, lager.Data{
+			"instance-id":   provision.InstanceID,
+			"deployment-id": deploymentID,
+		})
+		return "", "", err
+	}
+
 	dashboardURL := fmt.Sprintf("https://%s:%d", newKibana.Info.Metadata.Endpoint, *newKibana.Info.Metadata.Ports.HTTPS)
 
 	provisionContext := &OperationData{

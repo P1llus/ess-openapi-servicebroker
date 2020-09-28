@@ -79,6 +79,7 @@ github.com/drewolson/testflight v1.0.0 h1:jgA0pHcFIPnXoBmyFzrdoR2ka4UvReMDsjYc7J
 github.com/drewolson/testflight v1.0.0/go.mod h1:t9oKuuEohRGLb80SWX+uxJHuhX98B7HnojqtW+Ryq30=
 github.com/elastic/cloud-sdk-go v1.0.0 h1:Su5afSxc/RRIKe0AjGzCsqQqyntrNLfu8Kl9ADReCzw=
 github.com/elastic/cloud-sdk-go v1.0.0/go.mod h1:Lh6StXmfcUQj5TGl53rAmSjryzYEiOW6IjyAvHcuBLk=
+github.com/elastic/cloud-sdk-go v1.0.1 h1:CEO/br5dZtO97AK9ik/FJ5oEvMg6P5W5sID1OFbRgmg=
 github.com/elastic/go-elasticsearch/v7 v7.9.0 h1:UEau+a1MiiE/F+UrDj60kqIHFWdzU1M2y/YtBU2NC2M=
 github.com/elastic/go-elasticsearch/v7 v7.9.0/go.mod h1:OJ4wdbtDNk5g503kvlHLyErCgQwwzmDtaFC4XyOxXA4=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
