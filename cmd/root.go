@@ -128,20 +128,21 @@ func initConfig() error {
 	defaultViper.AutomaticEnv()
 	defaultViper.AddConfigPath(defaultViper.GetString("configpath"))
 	defaultViper.SetConfigName(defaultViper.GetString("configfile"))
-	if err := defaultViper.ReadInConfig(); err == nil && defaultViper.GetBool("verbose") {
+	defaultViper.SetConfigType("yaml")
+	if err := defaultViper.ReadInConfig(); err != nil {
 		defaultLogger.Info(fmt.Sprintf("Using config file: %s", defaultViper.ConfigFileUsed()))
 		return err
 	}
+
 	return nil
 }
 
 func run() error {
 	runtimeConfig := config.LoadConfig(defaultViper, defaultLogger)
 	plans, services := config.LoadCatalog(defaultViper.GetString("configpath"), defaultLogger)
-
 	runtimeProvider := provider.NewProvider(runtimeConfig.Provider, plans, defaultLogger)
 	runtimeBroker := broker.NewBroker(runtimeConfig.Broker, runtimeProvider, services, defaultLogger)
-	fmt.Println(runtimeConfig.Broker.Address)
+
 	mux := runtimeBroker.NewBrokerHTTPServer(runtimeBroker)
 	httpServer := &http.Server{
 		Addr:    fmt.Sprintf("%s:%s", runtimeConfig.Broker.Address, runtimeConfig.Broker.Port),
