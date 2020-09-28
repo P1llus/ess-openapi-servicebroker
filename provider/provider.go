@@ -98,7 +98,7 @@ func (p *Provider) Provision(ctx context.Context, provision *ProvisionData) (str
 		"deployment-id": deploymentID,
 	})
 
-	newKibana, err := ess.GetKibana(p.Client, deploymentID, provision.InstanceID)
+	newKibana, err := ess.GetKibana(p.Client, deploymentID, "main-kibana")
 	if err != nil {
 		p.Logger.Error("unable to find kibana dashboard:", err, lager.Data{
 			"instance-id":   provision.InstanceID,
