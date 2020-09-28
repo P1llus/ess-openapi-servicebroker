@@ -14,7 +14,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/elastic/go-elasticsearch/v7"
 )
 
@@ -67,7 +66,6 @@ func UpdateBrokerPassword(client *elasticsearch.Client, newpassword string) (int
 	if err != nil {
 		return 0, err
 	}
-	spew.Dump(res)
 	statusCode := res.StatusCode
 	return statusCode, nil
 }

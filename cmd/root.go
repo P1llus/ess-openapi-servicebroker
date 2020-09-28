@@ -141,7 +141,7 @@ func run() error {
 
 	runtimeProvider := provider.NewProvider(runtimeConfig.Provider, plans, defaultLogger)
 	runtimeBroker := broker.NewBroker(runtimeConfig.Broker, runtimeProvider, services, defaultLogger)
-
+	fmt.Println(runtimeConfig.Broker.Address)
 	mux := runtimeBroker.NewBrokerHTTPServer(runtimeBroker)
 	httpServer := &http.Server{
 		Addr:    fmt.Sprintf("%s:%s", runtimeConfig.Broker.Address, runtimeConfig.Broker.Port),

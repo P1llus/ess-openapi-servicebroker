@@ -16,8 +16,8 @@ import (
 
 // Config struct is a collection of all configuration items supported
 type Config struct {
-	Provider Provider `mapstructure:"provider"`
-	Broker   Broker   `mapstructure:"broker"`
+	Provider `mapstructure:"provider"`
+	Broker   `mapstructure:"broker"`
 }
 
 // Provider struct includes all settings supported for the Provider
