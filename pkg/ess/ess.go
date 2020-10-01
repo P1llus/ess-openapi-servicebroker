@@ -148,11 +148,11 @@ func createQuery(api *api.API, name string) deploymentapi.SearchParams {
 
 // GetServiceURL returns the full Endpoint URL for the Elasticsearch instance from the
 // related deployment specified by the deployment parameter
-func GetServiceURL(api *api.API, deployment *models.DeploymentSearchResponse) string {
+func GetServiceURL(api *api.API, deployment *models.DeploymentSearchResponse) (string, string, string) {
 	endpoint := deployment.Resources.Elasticsearch[0].Info.Metadata.Endpoint
 	port := deployment.Resources.Elasticsearch[0].Info.Metadata.Ports.HTTPS
 	serviceURL := fmt.Sprintf("https://%s:%d", endpoint, *port)
-	return serviceURL
+	return serviceURL, endpoint, string(*port)
 }
 
 // ResetElasticUserPassword tries to reset the password for the "elastic" user for the related deploymentID

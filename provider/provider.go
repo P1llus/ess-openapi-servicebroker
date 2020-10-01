@@ -42,7 +42,7 @@ type OperationData struct {
 // Credentials struct used when sending credentials back to the broker
 type Credentials struct {
 	URI      string `json:"uri,omitempty"`
-	Hostname string `json:"hostname,omitempty"`
+	Host     string `json:"hostname,omitempty"`
 	Port     string `json:"port,omitempty"`
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -184,7 +184,7 @@ func (p *Provider) Bind(ctx context.Context, bindData *BindData) (Credentials, s
 		})
 		return Credentials{}, "", err
 	}
-	serviceURL := ess.GetServiceURL(p.Client, deployment)
+	serviceURL, serviceHost, servicePort := ess.GetServiceURL(p.Client, deployment)
 	deploymentUsername, deploymentPassword := esclient.CreateBrokerCredentials(bindData.InstanceID, p.Config.Seed)
 	deploymentClient, err := esclient.CreateV7Client(serviceURL, deploymentUsername, deploymentPassword)
 	if err != nil {
@@ -258,7 +258,7 @@ func (p *Provider) Bind(ctx context.Context, bindData *BindData) (Credentials, s
 		})
 		return Credentials{}, "", fmt.Errorf("unable to create new account for bind operation, statuscode: %d", bindOutcome)
 	}
-	credentials := Credentials{Username: bindUsername, Password: bindPassword}
+	credentials := Credentials{URI: serviceURL, Host: serviceHost, Port: servicePort, Username: bindUsername, Password: bindPassword}
 
 	bindContext := &OperationData{
 		Action:       "binding",
@@ -298,7 +298,7 @@ func (p *Provider) Unbind(ctx context.Context, unbindData *UnbindData) (string, 
 		})
 		return "", err
 	}
-	serviceURL := ess.GetServiceURL(p.Client, deployment)
+	serviceURL, _, _ := ess.GetServiceURL(p.Client, deployment)
 	deploymentUsername, deploymentPassword := esclient.CreateBrokerCredentials(unbindData.InstanceID, p.Config.Seed)
 	deploymentClient, err := esclient.CreateV7Client(serviceURL, deploymentUsername, deploymentPassword)
 	if err != nil {
@@ -456,7 +456,7 @@ func (p *Provider) LastOperation(ctx context.Context, lastOperationData *LastOpe
 			})
 			return domain.Failed, "bind failed, cluster not found", nil
 		}
-		serviceURL := ess.GetServiceURL(p.Client, deployment)
+		serviceURL, _, _ := ess.GetServiceURL(p.Client, deployment)
 		bindUsername, bindPassword := esclient.CreateUserCredentials(operationData.UserID, p.Config.Seed)
 		deploymentClient, _ := esclient.CreateV7Client(serviceURL, bindUsername, bindPassword)
 		ping, _ := deploymentClient.Ping()
@@ -473,7 +473,7 @@ func (p *Provider) LastOperation(ctx context.Context, lastOperationData *LastOpe
 			})
 			return domain.Failed, "unbind failed, cluster not found", nil
 		}
-		serviceURL := ess.GetServiceURL(p.Client, deployment)
+		serviceURL, _, _ := ess.GetServiceURL(p.Client, deployment)
 		unbindUsername, unbindPassword := esclient.CreateUserCredentials(operationData.UserID, p.Config.Seed)
 		deploymentClient, _ := esclient.CreateV7Client(serviceURL, unbindUsername, unbindPassword)
 		ping, _ := deploymentClient.Ping()
